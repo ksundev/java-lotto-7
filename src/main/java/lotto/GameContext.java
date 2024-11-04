@@ -26,8 +26,8 @@ public class GameContext {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자(정수) 형식으로 입력해주세요.");
         }
-        if (budget < 0) {
-            throw new IllegalArgumentException("[ERROR] 음수는 입력할 수 없습니다.");
+        if (budget <= 0) {
+            throw new IllegalArgumentException("[ERROR] 0 또는 음수는 입력할 수 없습니다.");
         }
         if (budget % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");

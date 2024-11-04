@@ -36,7 +36,7 @@ class GameContextTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             gameContext.parseIntBudget("-1000");
         });
-        assertEquals("[ERROR] 음수는 입력할 수 없습니다.", exception.getMessage());
+        assertEquals("[ERROR] 0 또는 음수는 입력할 수 없습니다.", exception.getMessage());
     }
 
     @Test
@@ -46,5 +46,14 @@ class GameContextTest {
             gameContext.parseIntBudget("1500");
         });
         assertEquals("[ERROR] 1000원 단위로 입력해주세요.", exception.getMessage());
+    }
+
+    @Test
+    void parseIntBudget_ZeroInput_ThrowsException() {
+        GameContext gameContext = new GameContext();
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            gameContext.parseIntBudget("0");
+        });
+        assertEquals("[ERROR] 0 또는 음수는 입력할 수 없습니다.", exception.getMessage());
     }
 }
