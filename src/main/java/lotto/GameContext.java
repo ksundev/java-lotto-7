@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class GameContext {
     private int budget;
+    private int lottoQuantity;
 
     public GameContext() {
     }
@@ -12,6 +13,7 @@ public class GameContext {
         System.out.println("구입금액을 입력해 주세요.");
         String inputBudget = Console.readLine();
         budget = parseIntBudget(inputBudget);
+        lottoQuantity = budget / 1000;
     }
 
     int parseIntBudget(String inputBudget) {
@@ -31,5 +33,9 @@ public class GameContext {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
         }
         return budget;
+    }
+
+    public int getLottoQuantity() {
+        return lottoQuantity;
     }
 }
