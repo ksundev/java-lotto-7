@@ -7,5 +7,6 @@ public class Application {
         System.out.printf("\n%d개를 구매했습니다.\n", game.getLottoQuantity());
         game.makeLottos();
         game.printLottos();
+        game.setWinning();
     }
 }
