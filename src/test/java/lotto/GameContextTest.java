@@ -1,6 +1,9 @@
 package lotto;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameContextTest {
@@ -55,5 +58,16 @@ class GameContextTest {
             gameContext.parseIntBudget("0");
         });
         assertEquals("[ERROR] 0 또는 음수는 입력할 수 없습니다.", exception.getMessage());
+    }
+
+    @Test
+    void makeLottoNumbers_shouldGenerateSixUniqueNumbers() {
+        GameContext gameContext = new GameContext();
+        List<Integer> lottoNumbers = gameContext.makeLottoNumbers();
+
+        assertEquals(6, lottoNumbers.size());
+        long uniqueCount = lottoNumbers.stream().distinct().count();
+        assertEquals(6, uniqueCount);
+        assertTrue(lottoNumbers.stream().allMatch(num -> num >= 1 && num <= 45));
     }
 }
