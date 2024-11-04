@@ -1,6 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class GameContext {
     private int budget;
@@ -37,5 +43,13 @@ public class GameContext {
 
     public int getLottoQuantity() {
         return lottoQuantity;
+    }
+
+    List<Integer> makeLottoNumbers() {
+        Set<Integer> numberSet = new HashSet<>();
+        while (numberSet.size() < 6) {
+            numberSet.add(Randoms.pickNumberInRange(1, 45));
+        }
+        return new ArrayList<>(numberSet);
     }
 }
