@@ -5,6 +5,7 @@ public class Application {
         GameContext game = new GameContext();
         game.start();
         System.out.printf("\n%d개를 구매했습니다.\n", game.getLottoQuantity());
-        game.progress();
+        game.makeLottos();
+        game.printLottos();
     }
 }

@@ -24,12 +24,11 @@ public class GameContext {
         lottoQuantity = budget / 1000;
     }
 
-    public void progress() {
+    public void makeLottos() {
         for (int i = 0; i < lottoQuantity; i++) {
             Lotto lotto = new Lotto(makeLottoNumbers());
             lottos.add(lotto);
         }
-        printLottos();
     }
 
     int parseIntBudget(String inputBudget) {
