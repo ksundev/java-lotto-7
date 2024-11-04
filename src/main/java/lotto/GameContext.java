@@ -11,6 +11,7 @@ public class GameContext {
     private int lottoQuantity;
     private List<Lotto> lottos;
     private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public GameContext() {
         lottos = new ArrayList<>();
@@ -32,14 +33,32 @@ public class GameContext {
 
     public void setWinning() {
         winningNumbers = inputWinningNumbers();
+        bonusNumber = inputBonusNumber();
     }
 
     private List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요. (1-45, 중복되지 않게, 쉼표로 구분)");
+        System.out.println("\n당첨 번호를 입력해 주세요. (1-45, 중복되지 않게, 쉼표로 구분)");
         String input = Console.readLine();
         List<Integer> winningNumbers = parseNumbers(input);
         validateWinningNumbers(winningNumbers);
         return winningNumbers;
+    }
+
+    private int inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        int bonusNumber = parseSingleNumber(input);
+        validateBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers != null && winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 
     private List<Integer> parseNumbers(String input) {
